@@ -7,7 +7,7 @@ from typing import List, Optional, Tuple
 
 import numpy as np
 
-from exchangelib.utils import set_seed
+from task_exchangeable_inference.utils import set_seed
 
 
 @dataclass

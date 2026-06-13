@@ -1,4 +1,4 @@
-"""Command-line interface for exchangelib."""
+"""Command-line interface for task_exchangeable_inference."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ class CLI:
     @staticmethod
     def build_parser() -> argparse.ArgumentParser:
         parser = argparse.ArgumentParser(
-            prog="exchangelib",
+            prog="task_exchangeable_inference",
             description="Task-exchangeability inference with synthetic data",
         )
         sub = parser.add_subparsers(dest="command")
@@ -120,9 +120,9 @@ class CLI:
 
     @staticmethod
     def _run_demo(args) -> int:
-        from exchangelib.exchangeability import ExchangeabilityModel
-        from exchangelib.inference import ExchangeableInference
-        from exchangelib.repository import Task, TaskRepository
+        from task_exchangeable_inference.exchangeability import ExchangeabilityModel
+        from task_exchangeable_inference.inference import ExchangeableInference
+        from task_exchangeable_inference.repository import Task, TaskRepository
 
         rng = np.random.default_rng(args.seed)
         repo = TaskRepository()
@@ -160,8 +160,8 @@ class CLI:
     @staticmethod
     def _run_inference(args) -> int:
         import pandas as pd
-        from exchangelib.inference import ExchangeableInference
-        from exchangelib.repository import TaskRepository
+        from task_exchangeable_inference.inference import ExchangeableInference
+        from task_exchangeable_inference.repository import TaskRepository
 
         repo = TaskRepository()
         data_dir = Path(args.data_dir)
@@ -197,8 +197,8 @@ class CLI:
     @staticmethod
     def _run_test(args) -> int:
         import pandas as pd
-        from exchangelib.exchangeability import ExchangeabilityModel
-        from exchangelib.repository import Task, TaskRepository
+        from task_exchangeable_inference.exchangeability import ExchangeabilityModel
+        from task_exchangeable_inference.repository import Task, TaskRepository
 
         repo = TaskRepository()
         data_dir = Path(args.data_dir)

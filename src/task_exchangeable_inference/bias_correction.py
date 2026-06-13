@@ -6,7 +6,7 @@ from typing import Callable, Optional
 
 import numpy as np
 
-from exchangelib.utils import martingale_residuals
+from task_exchangeable_inference.utils import martingale_residuals
 
 
 class BiasCorrector:

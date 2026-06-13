@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Lumi-node/exchangelib"><img src="https://img.shields.io/badge/GitHub-Repo-blue?logo=github" alt="GitHub"></a>
-  <a href="https://github.com/Lumi-node/exchangelib/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
-  <a href="https://pypi.org/project/exchangelib/"><img src="https://img.shields.io/badge/python-%3E%3D3.10-blue.svg" alt="Python"></a>
-  <a href="https://github.com/Lumi-node/exchangelib/actions"><img src="https://img.shields.io/badge/tests-2759-success.svg" alt="Tests"></a>
+  <a href="https://github.com/Lumi-node/task-exchangeable-inference"><img src="https://img.shields.io/badge/GitHub-Repo-blue?logo=github" alt="GitHub"></a>
+  <a href="https://github.com/Lumi-node/task-exchangeable-inference/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
+  <a href="https://pypi.org/project/task-exchangeable-inference/"><img src="https://img.shields.io/badge/python-%3E%3D3.10-blue.svg" alt="Python"></a>
+  <a href="https://github.com/Lumi-node/task-exchangeable-inference/actions"><img src="https://img.shields.io/badge/tests-41-success.svg" alt="Tests"></a>
 </p>
 
 ---
@@ -26,13 +26,13 @@ The package is pure Python, works with NumPy, SciPy, and scikit‑learn, and shi
 ## Quick Start
 
 ```bash
-pip install exchangelib
+pip install task-exchangeable-inference
 ```
 
 ```python
-from exchangelib.repository import Repository
-from exchangelib.exchangeability import is_exchangeable
-from exchangelib.inference import fit, predict_interval
+from task_exchangeable_inference.repository import Repository
+from task_exchangeable_inference.exchangeability import is_exchangeable
+from task_exchangeable_inference.inference import fit, predict_interval
 
 # Load historic tasks
 repo = Repository()
@@ -51,7 +51,7 @@ print(preds, intervals)
 
 ### Bias Correction
 ```python
-from exchangelib.bias_correction import correct, correct_predictions
+from task_exchangeable_inference.bias_correction import correct, correct_predictions
 
 # Correct a single prediction
 adj = correct(prediction=0.5, correction_term=0.1)
@@ -62,7 +62,7 @@ adj_array = correct_predictions(predictions=[0.5, 0.6], correction_terms=[0.1, 0
 
 ### Diagnostics
 ```python
-from exchangelib.diagnostics import compute_statistic, check, ExchangeabilityWarning
+from task_exchangeable_inference.diagnostics import compute_statistic, check, ExchangeabilityWarning
 
 stat = compute_statistic(data=np.random.randn(100))
 check(stat)  # raises warning if exchangeability is violated
@@ -70,7 +70,7 @@ check(stat)  # raises warning if exchangeability is violated
 
 ### Kernel Estimation
 ```python
-from exchangelib.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
 
 kernel = ExchangeabilityKernel()
 kernel.fit(historic_tasks=repo.get_tasks())
@@ -81,7 +81,7 @@ pairwise = kernel.pairwise_matrix()
 ## Architecture
 
 ```
-exchangelib
+task_exchangeable_inference
 ├── __init__.py                # package entry point
 ├── bias_correction.py         # bias‑correction utilities
 ├── cli.py                     # command‑line interface
@@ -98,18 +98,18 @@ The **Repository** stores historic tasks and provides sampling utilities.
 **kernel** builds a kernel matrix from historic tasks, exposing methods to score new tasks and retrieve pairwise relationships.  
 **bias_correction** uses the kernel to compute correction terms for predictions.  
 **inference** ties everything together, fitting the kernel and producing calibrated prediction intervals.  
-The **CLI** (`exchangelib.cli`) offers a quick entry point for running diagnostics on a dataset.
+The **CLI** (`task_exchangeable_inference.cli`) offers a quick entry point for running diagnostics on a dataset.
 
 ## API Reference
 
-### `exchangelib.bias_correction`
+### `task_exchangeable_inference.bias_correction`
 
 - `correct(prediction: float, correction_term: float) -> float`
 - `correct_predictions(predictions: Sequence[float], correction_terms: Sequence[float]) -> List[float]`
 - `correction_term(self) -> Optional[float]`
 - `residuals(self) -> Optional[np.ndarray]`
 
-### `exchangelib.diagnostics`
+### `task_exchangeable_inference.diagnostics`
 
 - `compute_statistic(data: np.ndarray) -> float`
 - `check(statistic: float) -> None`
@@ -117,24 +117,24 @@ The **CLI** (`exchangelib.cli`) offers a quick entry point for running diagnosti
 - `class ExchangeabilityWarning(UserWarning)`
 - `class ExchangeabilityViolation(Exception)`
 
-### `exchangelib.exchangeability`
+### `task_exchangeable_inference.exchangeability`
 
 - `is_exchangeable(tasks: Sequence[Task]) -> bool`
 - `pairwise_exchangeability(tasks: Sequence[Task]) -> np.ndarray`
 
-### `exchangelib.inference`
+### `task_exchangeable_inference.inference`
 
 - `fit(tasks: Sequence[Task]) -> ExchangeabilityKernel`
 - `predict_interval(kernel: ExchangeabilityKernel, X_new: np.ndarray, alpha: float = 0.05) -> Tuple[np.ndarray, np.ndarray]`
 
-### `exchangelib.kernel`
+### `task_exchangeable_inference.kernel`
 
 - `fit(self, historic_tasks: List[Task]) -> "ExchangeabilityKernel"`
 - `score(self, target_task: Task) -> np.ndarray`
 - `task_weights(self, target_task: Task) -> np.ndarray`
 - `pairwise_matrix(self) -> np.ndarray`
 
-### `exchangelib.repository`
+### `task_exchangeable_inference.repository`
 
 - `add_task(self, X: np.ndarray, y: np.ndarray, **metadata) -> Task`
 - `get_tasks(self) -> List[Task]`
@@ -145,7 +145,7 @@ The **CLI** (`exchangelib.cli`) offers a quick entry point for running diagnosti
 - `n_samples(self) -> int`
 - `n_features(self) -> int`
 
-### `exchangelib.utils`
+### `task_exchangeable_inference.utils`
 
 - `set_seed(seed: int) -> np.random.Generator`
 - `rbf_kernel_matrix(X: np.ndarray, gamma: float) -> np.ndarray`
@@ -162,13 +162,12 @@ Task Exchangeability builds on the theory of **exchangeable sequences** (de Fine
 
 ## Testing
 
-The library is covered by **2759** unit tests located in the `tests/` directory. Run the test suite with:
+The library is covered by **41** unit tests located in the `tests/` directory. Run the test suite with:
 
 ```bash
 pytest -v
 ```
 
-Continuous integration runs on every push to the GitHub repository.
 
 ## Contributing
 
@@ -187,7 +186,7 @@ If you use Task Exchange in your research, please cite:
 
 ```
 Young, A. (2024). Statistical Inference with Synthetic Data via Task Exchangeability.
-Automate Capture Research. https://github.com/Lumi-node/exchangelib
+Automate Capture Research. https://github.com/Lumi-node/task-exchangeable-inference
 ```
 
 ## License

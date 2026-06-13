@@ -7,8 +7,8 @@ from typing import List, Optional
 
 import numpy as np
 
-from exchangelib.repository import Task
-from exchangelib.utils import compute_mmd_squared, rbf_kernel_matrix
+from task_exchangeable_inference.repository import Task
+from task_exchangeable_inference.utils import compute_mmd_squared, rbf_kernel_matrix
 
 
 @dataclass

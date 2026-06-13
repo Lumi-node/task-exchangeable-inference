@@ -1,6 +1,6 @@
-# Quick‑Start Guide – **exchangelib**
+# Quick‑Start Guide – **task_exchangeable_inference**
 
-*Task‑exchangeability* inference is a statistical framework for leveraging historic tasks (e.g., previous experiments, past runs of a model) to make calibrated predictions on a new target task. The **exchangelib** package implements the full pipeline:
+*Task‑exchangeability* inference is a statistical framework for leveraging historic tasks (e.g., previous experiments, past runs of a model) to make calibrated predictions on a new target task. The **task_exchangeable_inference** package implements the full pipeline:
 
 1. **Repository** – store and sample historic tasks.  
 2. **Exchangeability checks** – diagnose whether historic tasks are exchangeable with the target.  
@@ -16,14 +16,14 @@ Below you will find everything you need to get started: installation, a minimal 
 
 ```bash
 # Clone the repo (or download the source)
-git clone https://github.com/yourorg/exchangelib.git
-cd exchangelib
+git clone https://github.com/yourorg/task-exchangeable-inference.git
+cd task-exchangeable-inference
 
 # Install in editable mode (includes the test dependencies)
 pip install -e .
 ```
 
-> **Tip** – The package follows the *src* layout, so the import path is simply `exchangelib`.
+> **Tip** – The package follows the *src* layout, so the import path is simply `task_exchangeable_inference`.
 
 ---
 
@@ -31,12 +31,12 @@ pip install -e .
 
 ```python
 import numpy as np
-from exchangelib.repository import Repository
-from exchangelib.exchangeability import is_exchangeable
-from exchangelib.kernel import ExchangeabilityKernel
-from exchangelib.bias_correction import correct, correct_predictions
-from exchangelib.inference import fit, predict_interval
-from exchangelib.diagnostics import ExchangeabilityWarning
+from task_exchangeable_inference.repository import Repository
+from task_exchangeable_inference.exchangeability import is_exchangeable
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.bias_correction import correct, correct_predictions
+from task_exchangeable_inference.inference import fit, predict_interval
+from task_exchangeable_inference.diagnostics import ExchangeabilityWarning
 
 # -------------------------------------------------
 # 1️⃣  Build a repository of historic tasks
@@ -116,7 +116,7 @@ print(f"Prediction interval for the target task: [{lower.mean():.3f}, {upper.mea
 Sometimes you want a *random* subset of historic tasks (e.g., for bootstrap analysis).
 
 ```python
-from exchangelib.repository import Repository
+from task_exchangeable_inference.repository import Repository
 
 repo = Repository()
 # ... (add many tasks) ...
@@ -131,7 +131,7 @@ print(f"Sampled {len(sampled)} tasks.")
 The `exchangeability` module can also compute a full pairwise matrix, useful for visualisation.
 
 ```python
-from exchangelib.exchangeability import pairwise_exchangeability
+from task_exchangeable_inference.exchangeability import pairwise_exchangeability
 import matplotlib.pyplot as plt
 
 tasks = repo.get_tasks()
@@ -148,8 +148,8 @@ plt.show()
 If you need a custom kernel (e.g., a different bandwidth), you can instantiate the kernel directly and use the diagnostics utilities to validate the kernel matrix.
 
 ```python
-from exchangelib.kernel import ExchangeabilityKernel
-from exchangelib.diagnostics import compute_statistic, raise_if_invalid
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.diagnostics import compute_statistic, raise_if_invalid
 
 kernel = ExchangeabilityKernel(bandwidth=0.8)   # custom bandwidth
 kernel = kernel.fit(repo.get_tasks())
@@ -168,6 +168,6 @@ The package ships with a tiny CLI for quick experiments.
 
 ```bash
 # Show help
-python -m exchangelib.cli --help
+python -m task_exchangeable_inference.cli --help
 
 #

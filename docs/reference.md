@@ -1,10 +1,10 @@
 # 📚 Task‑Exchangeability Library – API Reference
 
-The **exchangelib** package implements the full statistical pipeline for *task‑exchangeability* inference on synthetic data.  
+The **task_exchangeable_inference** package implements the full statistical pipeline for *task‑exchangeability* inference on synthetic data.  
 All public objects are importable as:
 
 ```python
-from exchangelib.<module> import <name>
+from task_exchangeable_inference.<module> import <name>
 ```
 
 Below is the complete reference for every public symbol that the library ships.  
@@ -12,14 +12,14 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.bias_correction`
+## `task_exchangeable_inference.bias_correction`
 
 ### Functions
 
 | Signature | Description | Example |
 |---|---|---|
-| `def correct(y_pred: np.ndarray, y_true: np.ndarray, *, bias: float = 0.0) -> np.ndarray` | Returns bias‑corrected predictions by subtracting a constant bias term (or adding a learned correction). | ```python\nfrom exchangelib.bias_correction import correct\ny_corr = correct(y_pred, y_true, bias=0.12)\n``` |
-| `def correct_predictions(predictions: np.ndarray, correction: float) -> np.ndarray` | Applies a scalar correction to a set of predictions. | ```python\nfrom exchangelib.bias_correction import correct_predictions\ny_adj = correct_predictions(y_pred, correction=0.05)\n``` |
+| `def correct(y_pred: np.ndarray, y_true: np.ndarray, *, bias: float = 0.0) -> np.ndarray` | Returns bias‑corrected predictions by subtracting a constant bias term (or adding a learned correction). | ```python\nfrom task_exchangeable_inference.bias_correction import correct\ny_corr = correct(y_pred, y_true, bias=0.12)\n``` |
+| `def correct_predictions(predictions: np.ndarray, correction: float) -> np.ndarray` | Applies a scalar correction to a set of predictions. | ```python\nfrom task_exchangeable_inference.bias_correction import correct_predictions\ny_adj = correct_predictions(y_pred, correction=0.05)\n``` |
 
 ### Methods (intended for the `BiasCorrector` class – shown for completeness)
 
@@ -30,19 +30,19 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.cli`
+## `task_exchangeable_inference.cli`
 
 ### Functions
 
 | Signature | Description | Example |
 |---|---|---|
 | `def build_parser() -> argparse.ArgumentParser` | Constructs an `argparse.ArgumentParser` with all CLI options for the library (data generation, fitting, prediction, etc.). | ```python\nimport argparse\nparser = build_parser()\nargs = parser.parse_args()\n``` |
-| `def main(argv: Optional[Sequence[str]] = None) -> int` | Entry‑point used by the console script. Parses arguments, runs the requested pipeline, and returns an exit code. | ```python\nfrom exchangelib.cli import main\nexit_code = main()\n``` |
+| `def main(argv: Optional[Sequence[str]] = None) -> int` | Entry‑point used by the console script. Parses arguments, runs the requested pipeline, and returns an exit code. | ```python\nfrom task_exchangeable_inference.cli import main\nexit_code = main()\n``` |
 | `def main()` | **Alias** for the same entry‑point; kept for backward compatibility. | ```python\nif __name__ == \"__main__\":\n    main()\n``` |
 
 ---
 
-## `exchangelib.diagnostics`
+## `task_exchangeable_inference.diagnostics`
 
 ### Functions
 
@@ -61,18 +61,18 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.exchangeability`
+## `task_exchangeable_inference.exchangeability`
 
 ### Functions
 
 | Signature | Description | Example |
 |---|---|---|
-| `def is_exchangeable(X: np.ndarray, y: np.ndarray, *, alpha: float = 0.05) -> bool` | Tests global exchangeability of a dataset using a kernel‑based statistic; returns `True` if the null hypothesis cannot be rejected. | ```python\nfrom exchangelib.exchangeability import is_exchangeable\nok = is_exchangeable(X, y, alpha=0.01)\n``` |
+| `def is_exchangeable(X: np.ndarray, y: np.ndarray, *, alpha: float = 0.05) -> bool` | Tests global exchangeability of a dataset using a kernel‑based statistic; returns `True` if the null hypothesis cannot be rejected. | ```python\nfrom task_exchangeable_inference.exchangeability import is_exchangeable\nok = is_exchangeable(X, y, alpha=0.01)\n``` |
 | `def pairwise_exchangeability(X: np.ndarray, y: np.ndarray, *, alpha: float = 0.05) -> np.ndarray` | Returns a boolean matrix `M` where `M[i, j]` indicates whether task *i* and *j* are pairwise exchangeable. | ```python\nM = pairwise_exchangeability(X, y)\n``` |
 
 ---
 
-## `exchangelib.inference`
+## `task_exchangeable_inference.inference`
 
 ### Functions
 
@@ -83,7 +83,7 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.kernel`
+## `task_exchangeable_inference.kernel`
 
 ### Class `ExchangeabilityKernel`
 
@@ -96,7 +96,7 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.repository`
+## `task_exchangeable_inference.repository`
 
 ### Class `TaskRepository`
 
@@ -113,7 +113,7 @@ Only the functions and classes listed in the technical specification are documen
 
 ---
 
-## `exchangelib.utils`
+## `task_exchangeable_inference.utils`
 
 ### Functions
 

@@ -1,9 +1,9 @@
-"""Shared fixtures for exchangelib tests."""
+"""Shared fixtures for task_exchangeable_inference tests."""
 
 import numpy as np
 import pytest
 
-from exchangelib.repository import Task, TaskRepository
+from task_exchangeable_inference.repository import Task, TaskRepository
 
 
 @pytest.fixture

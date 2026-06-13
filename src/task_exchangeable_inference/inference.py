@@ -8,11 +8,11 @@ from typing import Callable, List, Optional, Tuple
 import numpy as np
 from sklearn.linear_model import Ridge
 
-from exchangelib.bias_correction import BiasCorrector
-from exchangelib.diagnostics import ExchangeabilityDiagnostic
-from exchangelib.kernel import ExchangeabilityKernel
-from exchangelib.repository import Task
-from exchangelib.utils import conformal_quantiles
+from task_exchangeable_inference.bias_correction import BiasCorrector
+from task_exchangeable_inference.diagnostics import ExchangeabilityDiagnostic
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.repository import Task
+from task_exchangeable_inference.utils import conformal_quantiles
 
 
 @dataclass

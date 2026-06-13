@@ -1,9 +1,9 @@
 site_name: Task Exchange
-site_url: https://lumi-node.github.io/exchangelib/
+site_url: https://lumi-node.github.io/task-exchangeable-inference/
 site_description: "Statistical inference with synthetic data via task exchangeability"
 site_author: Andrew Young
-repo_url: https://github.com/Lumi-node/exchangelib
-repo_name: Lumi-node/exchangelib
+repo_url: https://github.com/Lumi-node/task-exchangeable-inference
+repo_name: Lumi-node/task-exchangeable-inference
 edit_uri: edit/main/docs/
 
 theme:
@@ -62,7 +62,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/Lumi-node/exchangelib
+      link: https://github.com/Lumi-node/task-exchangeable-inference
   generator: false
 
 extra_css:

@@ -25,7 +25,7 @@ While these methods address privacy, model misspecification, or distribution shi
 
 ### 3. How This Implementation Advances the Field  
 
-The **`exchangelib`** Python package operationalises the task‑exchangeability theory into a ready‑to‑use, end‑to‑end pipeline:
+The **`task_exchangeable_inference`** Python package operationalises the task‑exchangeability theory into a ready‑to‑use, end‑to‑end pipeline:
 
 1. **Task‑Exchangeability Testing** – Implements permutation‑based tests and analytic criteria (e.g., exchangeable sufficient statistics) to verify that a synthetic generation mechanism respects the exchangeability assumptions for a given scientific task.  
 
@@ -35,9 +35,9 @@ The **`exchangelib`** Python package operationalises the task‑exchangeability 
 
 4. **Diagnostic Suite** – Provides visual and quantitative diagnostics (exchangeability plots, coverage checks, posterior predictive checks) to help practitioners assess the quality of synthetic inference.  
 
-5. **Reproducible Package Structure** – Built with a `src/` layout, a `pyproject.toml` for build isolation, and a clean public API (`from exchangelib.<module> import <Class>`). All internal dependencies are explicit, making the library easy to audit and extend.  
+5. **Reproducible Package Structure** – Built with a `src/` layout, a `pyproject.toml` for build isolation, and a clean public API (`from task_exchangeable_inference.<module> import <Class>`). All internal dependencies are explicit, making the library easy to audit and extend.  
 
-By delivering a **complete, documented, and test‑covered implementation**, `exchangelib` lowers the barrier for researchers to adopt task‑exchangeability methods, encourages reproducibility, and creates a common platform for future methodological extensions (e.g., hierarchical tasks, privacy‑preserving exchangeability).  
+By delivering a **complete, documented, and test‑covered implementation**, `task_exchangeable_inference` lowers the barrier for researchers to adopt task‑exchangeability methods, encourages reproducibility, and creates a common platform for future methodological extensions (e.g., hierarchical tasks, privacy‑preserving exchangeability).  
 
 ### 4. References  
 

@@ -1,18 +1,18 @@
-# Architecture of **Task‑Exchangeability** (`exchangelib`)
+# Architecture of **Task‑Exchangeability** (`task_exchangeable_inference`)
 
 ## 1. System Overview  
 
-`exchangelib` implements the full statistical pipeline for *task‑exchangeability* inference on synthetic (or real) data.  The library is organized as a classic **src‑layout** Python package and provides a clean public API that can be imported as
+`task_exchangeable_inference` implements the full statistical pipeline for *task‑exchangeability* inference on synthetic (or real) data.  The library is organized as a classic **src‑layout** Python package and provides a clean public API that can be imported as
 
 ```python
-from exchangelib.bias_correction import correct, correct_predictions
-from exchangelib.cli import build_parser, main
-from exchangelib.diagnostics import compute_statistic, check, raise_if_invalid
-from exchangelib.exchangeability import is_exchangeable, pairwise_exchangeability
-from exchangelib.inference import fit, predict_interval
-from exchangelib.kernel import ExchangeabilityKernel
-from exchangelib.repository import Repository
-from exchangelib.utils import set_seed, rbf_kernel_matrix, density_ratio_kmm, ...
+from task_exchangeable_inference.bias_correction import correct, correct_predictions
+from task_exchangeable_inference.cli import build_parser, main
+from task_exchangeable_inference.diagnostics import compute_statistic, check, raise_if_invalid
+from task_exchangeable_inference.exchangeability import is_exchangeable, pairwise_exchangeability
+from task_exchangeable_inference.inference import fit, predict_interval
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.repository import Repository
+from task_exchangeable_inference.utils import set_seed, rbf_kernel_matrix, density_ratio_kmm, ...
 ```
 
 The core idea is to treat a collection of **tasks** (datasets) as exchangeable objects.  A *kernel* is learned on historic tasks, a *bias‑correction* term is estimated, and finally conformal prediction intervals are produced for a new target task.  The modules are deliberately small and composable, making it easy to replace any component (e.g., the kernel, the bias‑correction strategy, or the diagnostics) without touching the rest of the code‑base.
@@ -24,7 +24,7 @@ The core idea is to treat a collection of **tasks** (datasets) as exchangeable o
 ```mermaid
 graph TD
     %% Packages
-    subgraph exchangelib
+    subgraph task_exchangeable_inference
         A[utils.py] 
         B[repository.py] 
         C[kernel.py] 
@@ -72,7 +72,7 @@ graph TD
 
 ## 3. Module‑by‑Module Description  
 
-### `src/exchangelib/utils.py`  
+### `src/task-exchangeable-inference/utils.py`  
 Utility functions that are pure‑numpy/scipy helpers:
 
 | Function | Purpose |
@@ -89,7 +89,7 @@ All functions are stateless and depend only on explicit inputs, making them easy
 
 ---
 
-### `src/exchangelib/repository.py`  
+### `src/task-exchangeable-inference/repository.py`  
 A lightweight in‑memory repository for tasks.
 
 | Method | Description |
@@ -106,7 +106,7 @@ The repository isolates data handling from the statistical core, allowing the sa
 
 ---
 
-### `src/exchangelib/kernel.py`  
+### `src/task-exchangeable-inference/kernel.py`  
 Implements the **ExchangeabilityKernel** class that learns a similarity measure over tasks.
 
 ```python
@@ -126,7 +126,7 @@ The class is deliberately immutable after `fit`; subsequent calls only read the 
 
 ---
 
-### `src/exchangelib/exchangeability.py`  
+### `src/task-exchangeable-inference/exchangeability.py`  
 Statistical tests that decide whether a target task can be considered exchangeable with the historic pool.
 
 | Function | Signature | Role |
@@ -138,7 +138,7 @@ Both functions rely on `utils.compute_mmd_squared` and raise `ExchangeabilityVio
 
 ---
 
-### `src/exchangelib/diagnostics.py`  
+### `src/task-exchangeable-inference/diagnostics.py`  
 General purpose validation utilities.
 
 | Function / Class | Purpose |
@@ -153,7 +153,7 @@ These helpers keep the core modules tidy and provide a single place for future e
 
 ---
 
-### `src/exchangelib/bias_correction.py`  
+### `src/task-exchangeable-inference/bias_correction.py`  
 Implements the bias‑correction step that adjusts predictions for systematic drift between historic and target tasks.
 
 | Function / Method | Signature | Description |
@@ -167,7 +167,7 @@ The module can be used stand‑alone or via `inference.fit`, which automatically
 
 ---
 
-### `src/exchangelib/inference.py`  
+### `src/task-exchangeable-inference/inference.py`  
 High‑level API that a user calls to obtain conformal prediction intervals for a new task.
 
 | Function | Signature | What it does |

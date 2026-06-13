@@ -1,18 +1,18 @@
-"""Tests for the full exchangelib pipeline."""
+"""Tests for the full task_exchangeable_inference pipeline."""
 
 import numpy as np
 import pytest
 
-from exchangelib.bias_correction import BiasCorrector
-from exchangelib.diagnostics import (
+from task_exchangeable_inference.bias_correction import BiasCorrector
+from task_exchangeable_inference.diagnostics import (
     ExchangeabilityDiagnostic,
     ExchangeabilityViolation,
 )
-from exchangelib.exchangeability import ExchangeabilityModel
-from exchangelib.inference import ExchangeableInference
-from exchangelib.kernel import ExchangeabilityKernel
-from exchangelib.repository import Task, TaskRepository
-from exchangelib.utils import (
+from task_exchangeable_inference.exchangeability import ExchangeabilityModel
+from task_exchangeable_inference.inference import ExchangeableInference
+from task_exchangeable_inference.kernel import ExchangeabilityKernel
+from task_exchangeable_inference.repository import Task, TaskRepository
+from task_exchangeable_inference.utils import (
     compute_mmd_squared,
     conformal_quantiles,
     density_ratio_kmm,
@@ -408,7 +408,7 @@ class TestEndToEnd:
 
 class TestImports:
     def test_top_level_imports(self):
-        from exchangelib import (
+        from task_exchangeable_inference import (
             ExchangeabilityModel,
             ExchangeableInference,
             ExchangeabilityKernel,
@@ -420,15 +420,15 @@ class TestImports:
         assert TaskRepository is not None
 
     def test_module_imports(self):
-        from exchangelib.repository import TaskRepository
-        from exchangelib.exchangeability import ExchangeabilityModel
-        from exchangelib.kernel import ExchangeabilityKernel
-        from exchangelib.bias_correction import BiasCorrector
-        from exchangelib.inference import ExchangeableInference
-        from exchangelib.diagnostics import ExchangeabilityDiagnostic
-        from exchangelib.utils import density_ratio_kmm
-        from exchangelib.cli import CLI
+        from task_exchangeable_inference.repository import TaskRepository
+        from task_exchangeable_inference.exchangeability import ExchangeabilityModel
+        from task_exchangeable_inference.kernel import ExchangeabilityKernel
+        from task_exchangeable_inference.bias_correction import BiasCorrector
+        from task_exchangeable_inference.inference import ExchangeableInference
+        from task_exchangeable_inference.diagnostics import ExchangeabilityDiagnostic
+        from task_exchangeable_inference.utils import density_ratio_kmm
+        from task_exchangeable_inference.cli import CLI
 
     def test_version(self):
-        import exchangelib
-        assert exchangelib.__version__ == "0.1.0"
+        import task_exchangeable_inference
+        assert task_exchangeable_inference.__version__ == "0.1.0"

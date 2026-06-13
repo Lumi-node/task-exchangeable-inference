@@ -11,3 +11,5 @@ site/
 *.pdf
 !paper/*.pdf
 .env
+
+.opus_build.log
