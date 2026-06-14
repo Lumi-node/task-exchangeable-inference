@@ -1,20 +1,20 @@
 # Installation
 
-## From PyPI
+Install the latest version directly from GitHub:
 
 ```bash
-pip install task-exchangeable-inference
+pip install git+https://github.com/Lumi-node/task-exchangeable-inference.git
 ```
 
-## From Source
+Requires Python ≥ 3.10.
+
+### Development install
 
 ```bash
 git clone https://github.com/Lumi-node/task-exchangeable-inference.git
 cd task-exchangeable-inference
 pip install -e ".[dev]"
+pytest -q
 ```
 
-## Requirements
-
-- Python >= 3.10
-- Dependencies: __future__, task_exchangeable_inference, numpy, scipy, sklearn, warnings
+> Not published to PyPI — install from source as shown above.
